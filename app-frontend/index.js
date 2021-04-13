@@ -12,6 +12,7 @@ const toast = document.querySelector(".toast");
 
 const host = "https://sharein-y.herokuapp.com/"
 const uploadURL = `${host}api/files`;
+const maxAllowedSize = 100 * 1024 * 1024;
 
 dropZone.addEventListener("dragover", (e) => {
     e.preventDefault();
@@ -53,7 +54,15 @@ copyBtn.addEventListener("click", () =>{
 
 const uploadFile = () => {
     progressContainer.style.display="block";
-    const file = fileInput.files[0];
+    if(fileInput.files.length > 1){
+        fileInput.value="";
+        showToast("only upload 1 file");
+        return;
+    }
+    const file = fileInput.files[0]; 
+    if(file.size > maxAllowedSize ){
+       showToast("can't upload more than 100MB")
+    }
     const formData = new FormData();
     formData.append("myfile",file);
     const xhr = new XMLHttpRequest();
