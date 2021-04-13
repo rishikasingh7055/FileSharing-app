@@ -2,7 +2,7 @@ const dropZone = document.querySelector(".drop-zone");
 const fileInput =document.querySelector("#fileInput");
 const browseBtn = document.querySelector(".browseBtn");
 
-const host = "https://sharein-y.herokuapp.com/"
+const host = "http://localhost:5000/"
 const uploadURL = `${host}api/files`;
 
 dropZone.addEventListener("dragover", (e) => {
@@ -39,7 +39,10 @@ const uploadFile = () => {
     formData.append("myfile",file);
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = () =>{
-        console.log(xhr.readyState);
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            console.log(xhr.response);
+        }
+        
     };
 
     xhr.open("POST", uploadURL);
