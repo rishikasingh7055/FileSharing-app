@@ -10,6 +10,8 @@ body,html{
     height: 100%;
     padding: 0;
     margin: 0;
+    overflow: hidden;
+    
 }
 
 body, .drop-zone, .upload-container{
@@ -17,6 +19,10 @@ body, .drop-zone, .upload-container{
     align-items:center;
     justify-content: center;
     flex-direction: column;
+}
+
+body{
+    flex-direction: row;
 }
 
 .upload-container{
@@ -164,18 +170,34 @@ p{
     cursor: pointer;
 }
 
-.email-container{
-    display: flex;
-    align-items: center;
+.toast{
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%, 60px);
+    padding: 10px 20px ;
+    border-radius: 5px;
+    background: #03a9f4;
+    color:#fff;
+    font-size: 18px;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1),0px 4px 6px -2px rgba(0,0,0,0,05);
+    transition: transform ease-in-out 0.2s;
+
 }
 
-.email-container form{
-    width: 100%;
-    border:2px solid var(--border-color);
-    border-radius: 10px;
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.upload-vector{
+   background: url(./undraw-upload.svg) no-repeat center;
+   background-size: contain;
+   height: 100vh;
+   width: 100vh;
 }
 
+@media screen and (max-width: 900px) {
+    :root {
+      --container-width: 320px;
+    }
+    .image-vector {
+      display: none;
+    }
+    
+  }
